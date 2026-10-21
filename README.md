@@ -1,48 +1,116 @@
-# How To Download Audio Of A YouTube Video?
 
-1. Setup python and pip if you haven’t already
+# YouTube Audio Downloader
 
-2. Install virtualenv
+A Python-based command-line application to download audio from supported video URLs using `yt-dlp`. It also includes a utility to convert audio files to MP3 format.
 
-`pip install virtualenv`
+## Features
 
-3. Create Virtual environment
+- Download the best available audio stream.
+- Display video title, uploader, duration, and view count.
+- Choose a custom output directory.
+- Convert supported audio files to MP3.
+- Handle missing files and download or conversion errors.
+- Automated tests using pytest.
 
-`virtualenv venv`
+## Tech Stack
 
-4. Activate virtual environment
+- Python 3.11+
+- yt-dlp
+- MoviePy 1.0.3
+- FFmpeg
+- pytest
 
-- `source venv/bin/activate` (Linux)
-- `venv\Scripts\activate` (Windows)
+## Project Structure
 
-5. Install requirements
+```text
+YouTube-Audio-Downloader/
+├── YouTubeAudioDownloader.py
+├── WebmToMp3.py
+├── requirements.txt
+├── .gitignore
+├── README.md
+└── tests/
+    └── test_converter.py
+```
 
-`pip install -r requirements.txt`
+## Installation
 
-6. Specify url of the YouTube video whoose audio you want (in YouTubeAudioDownloader.py)
+### 1. Clone the repository
 
-ex: `url = "https://www.youtube.com/watch?v=ZSXN_dpG5jk"`
+```powershell
+git clone https://github.com/RaavanHrishi07/YouTube-Audio-Downloader.git
+cd YouTube-Audio-Downloader
+```
 
-7. Run YouTubeAudioDownloader.py
+### 2. Create a virtual environment
 
-![YouTubeAudioDownloader.py Output](https://i.postimg.cc/htwd362f/Output.png)
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
 
-You will find file of .webm format downloaded in the same folder.
+### 3. Install dependencies
 
-## How To convert .webm to .mp3 format?
+```powershell
+python -m pip install -r requirements.txt
+```
 
-1. Install moviepy in the same environment
+### 4. Install FFmpeg
 
-`pip install moviepy==1.0.3`
+FFmpeg must be installed and accessible through your system PATH for audio conversion. Verify it with:
 
-2. Specify path of .webm file (in WebmToMp3.py)
+```powershell
+ffmpeg -version
+```
 
-ex: `clip = mp.AudioFileClip("C:/Users/sejal/Desktop/YouTube Audio Downloader/Rainbow.webm").subclip()`
+## Usage
 
-3. Specify path where .mp3 file should be saved (in WebmToMp3.py)
+### Download audio
 
-ex: `clip.write_audiofile("C:/Users/sejal/Desktop/YouTube Audio Downloader/rainbow.mp3")`
+Download audio from a supported video URL:
 
-4. Run WebmToMp3.py
+```powershell
+python .\YouTubeAudioDownloader.py "VIDEO_URL"
+```
+
+By default, downloaded files are saved in the `downloads` directory.
+
+To specify a different output directory:
+
+```powershell
+python .\YouTubeAudioDownloader.py "VIDEO_URL" --output-dir "my_audio"
+```
+
+### Convert an audio file to MP3
+
+```powershell
+python .\WebmToMp3.py "input.webm" "output.mp3"
+```
+
+The input must exist, and the output filename must end in `.mp3`.
+
+## Run Tests
+
+Run the automated test suite from the project root:
+
+```powershell
+python -m pytest -v
+```
+
+The converter tests cover missing input files, invalid output extensions, identical input/output paths, and successful conversion using a mocked audio clip.
+
+## Responsible Use
+
+Use this project only with content you own or are authorised to download. Follow the relevant platform's terms and applicable copyright laws.
+
+## License
+
+This project is currently available for personal and educational use. A formal open-source licence has not yet been added.
 
 
+## Author
+
+**Hrishikesh Sharma**
+
+- GitHub: [@RaavanHrishi07](https://github.com/RaavanHrishi07)
+- Repository: [YouTube Audio Downloader](https://github.com/RaavanHrishi07/YouTube-Audio-Downloader)
